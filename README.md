@@ -43,6 +43,7 @@ docker compose run --rm opencode <your-arguments>
 The following files are mapped from your host to the container:
 
 - `~/.local/share/opencode` $\to$ `/home/opencodeuser/.local/share/opencode`
+- `~/.local/state/opencode` $\to$ `/home/opencodeuser/.local/state/opencode`
 - `~/.config/opencode/AGENTS.md` $\to$ `/home/opencodeuser/.config/opencode/AGENTS.md`
 - `~/.config/opencode/opencode.json` $\to$ `/home/opencodeuser/.config/opencode/opencode.json`
 - `~/.config/opencode/prompts/build.txt` $\to$ `/home/opencodeuser/.config/opencode/prompts/build.txt`

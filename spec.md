@@ -48,4 +48,4 @@ Create a custom Docker image based on `ghcr.io/anomalyco/opencode` that includes
 - Use `build` with `args` to pass `UID` and `GID` from the host to the Dockerfile.
 - Map host volumes for configuration and working directory to match the user's current setup, using the new user's home directory (`/home/opencodeuser/...`).
 - Use `network_mode: host` as requested.
-- Map `.local/share/opencode`, `.config/opencode/AGENTS.md`, `.config/opencode/opencode.json`, `.config/opencode/prompts/build.txt`, and current directory `.`.
+- Map `.local/share/opencode`, `.local/state/opencode`, `.config/opencode/AGENTS.md`, `.config/opencode/opencode.json`, `.config/opencode/prompts/build.txt`, and current directory `.`.

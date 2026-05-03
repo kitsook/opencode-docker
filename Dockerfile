@@ -33,7 +33,7 @@ RUN groupadd -o -g ${GROUP_ID} ${USER_NAME} && \
 # Create necessary directories and set ownership
 RUN mkdir -p /home/${USER_NAME}/.local/share/opencode \
              /home/${USER_NAME}/.config/opencode/prompts \
-             /home/${USER_NAME}/.local/state && \
+             /home/${USER_NAME}/.local/state/opencode && \
     chown -R ${USER_NAME}:${USER_NAME} /home/${USER_NAME}
 
 # Install Python development tools

@@ -10,6 +10,7 @@ services:
     network_mode: host
     volumes:
       - ${HOME}/.local/share/opencode:/home/opencodeuser/.local/share/opencode
+      - ${HOME}/.local/state/opencode:/home/opencodeuser/.local/state/opencode
       - ${HOME}/.config/opencode/AGENTS.md:/home/opencodeuser/.config/opencode/AGENTS.md
       - ${HOME}/.config/opencode/opencode.json:/home/opencodeuser/.config/opencode/opencode.json
       - ${HOME}/.config/opencode/prompts/build.txt:/home/opencodeuser/.config/opencode/prompts/build.txt
