@@ -1,6 +1,6 @@
 # Custom Opencode Docker Environment
 
-This repository provides a customized Docker environment for running [Opencode](https://github.com/anomalyco/opencode). While the official image is lightweight, this setup adds a comprehensive suite of development tools for **Python** and **TypeScript/Node.js**, making it a ready-to-use sandbox for coding tasks.
+This repository provides a customized Docker environment for running [opencode](https://github.com/anomalyco/opencode). While the official image is lightweight, this setup adds a comprehensive suite of development tools for **Python** and **TypeScript/Node.js**, making it a ready-to-use sandbox for coding tasks.
 
 ## Features
 
