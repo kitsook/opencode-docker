@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  opencode:
+    build: .
+    network_mode: host
+    volumes:
+      - ${HOME}/.local/share/opencode:/root/.local/share/opencode
+      - ${HOME}/.config/opencode/AGENTS.md:/root/.config/opencode/AGENTS.md
+      - ${HOME}/.config/opencode/opencode.json:/root/.config/opencode/opencode.json
+      - ${HOME}/.config/opencode/prompts/build.txt:/root/.config/opencode/prompts/build.txt
+      - .:/app
+    stdin_open: true
+    tty: true
+    command: ["/app"]
