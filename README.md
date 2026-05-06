@@ -26,10 +26,17 @@ UID=$(id -u) GID=$(id -g) docker compose build
 
 ### 3. Run Opencode
 
-Once built, you can run the `opencode` command:
+Once built, you can run the `opencode` command in the current directory:
 
 ```bash
 docker compose run --rm opencode
+```
+
+To run `opencode` on a different project folder without moving the `docker-compose.yml` file, set the `APP_DIR` environment variable:
+
+```bash
+# From within your target project folder
+APP_DIR=$(pwd) docker compose -f /path/to/opencode-docker/docker-compose.yml run --rm opencode
 ```
 
 To pass specific arguments to the `opencode` command:
