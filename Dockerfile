@@ -3,7 +3,7 @@ ARG USER_ID=1000
 ARG GROUP_ID=1000
 ARG USER_NAME=opencodeuser
 
-FROM ghcr.io/anomalyco/opencode
+FROM ghcr.io/anomalyco/opencode:1.14.48
 
 # Re-declare ARGs after FROM
 ARG USER_ID

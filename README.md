@@ -2,6 +2,8 @@
 
 A customized Docker environment for `opencode` based on Alpine Linux, including Python and TypeScript development tools.
 
+This repo is not affiliated with the official OpenCode.
+
 ## Features
 
 - **Base Image**: `ghcr.io/anomalyco/opencode` (Alpine Linux based)
