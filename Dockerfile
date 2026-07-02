@@ -3,7 +3,7 @@ ARG USER_ID=1000
 ARG GROUP_ID=1000
 ARG USER_NAME=opencodeuser
 
-FROM ghcr.io/anomalyco/opencode:1.14.48
+FROM ghcr.io/anomalyco/opencode:1.17.13
 
 # Re-declare ARGs after FROM
 ARG USER_ID
@@ -24,7 +24,16 @@ RUN apk update && apk add --no-cache \
     py3-pip \
     nodejs \
     npm \
-    shadow
+    shadow \
+    unzip \
+    xz \
+    zip \
+    glu glu-dev \
+    openjdk21-jdk \
+    bash \
+    libstdc++ \
+    gcompat \
+    libc6-compat
 
 # Create the group and user with specified UID/GID
 RUN groupadd -o -g ${GROUP_ID} ${USER_NAME} && \
@@ -48,6 +57,37 @@ RUN npm install -g \
     typescript \
     eslint \
     prettier
+
+# flutter dev
+ENV ANDROID_SDK_ROOT=/opt/android-sdk
+ENV FLUTTER_HOME=/opt/flutter
+ENV PATH="$PATH:$FLUTTER_HOME/bin:${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin:${ANDROID_SDK_ROOT}/platform-tools"
+
+# Download and install Android Command Line Tools
+RUN mkdir -p ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    wget -O cmdline-tools.zip "https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip" && \
+    unzip cmdline-tools.zip -d ${ANDROID_SDK_ROOT}/cmdline-tools && \
+    mv ${ANDROID_SDK_ROOT}/cmdline-tools/cmdline-tools ${ANDROID_SDK_ROOT}/cmdline-tools/latest && \
+    rm cmdline-tools.zip
+
+# Accept Android licenses and install SDK packages
+#RUN yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --licenses && \
+#    ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0"
+RUN yes | ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --licenses && \
+    ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-36" "build-tools;28.0.3" "ndk;28.2.13676358"
+
+# Install the Flutter SDK (Stable Channel)
+RUN git clone https://github.com/flutter/flutter.git -b stable ${FLUTTER_HOME} && \
+    git config --global --add safe.directory ${FLUTTER_HOME}
+
+# Pre-download Flutter tools and accept Flutter-specific Android licenses
+RUN flutter config --no-analytics && \
+    flutter precache && \
+    yes "y" | flutter doctor --android-licenses && \
+    flutter doctor -v
+
+RUN git config --global --add safe.directory /opt/flutter && \
+  chown -R ${USER_NAME} /opt/flutter /opt/android-sdk
 
 # Copy and prepare the entrypoint script
 COPY entrypoint.sh /entrypoint.sh
