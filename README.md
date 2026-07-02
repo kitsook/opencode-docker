@@ -10,6 +10,7 @@ This repo is not affiliated with the official OpenCode.
 - **Essential Tools**: `git`, `curl`, `wget`, `build-base`, `jq`, `unzip`, `tar`
 - **Python Stack**: `python3`, `pip`, `ruff`, `black`, `pytest`, `mypy`
 - **TypeScript/Node Stack**: `nodejs`, `npm`, `typescript`, `eslint`, `prettier`
+- **Android Flutter Stack**: `flutter`
 - **Easy Orchestration**: Uses `docker-compose` for simplified management.
 
 ## Quick Start
